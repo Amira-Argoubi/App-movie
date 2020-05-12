@@ -2,15 +2,35 @@ import React, { Component } from "react";
 //import "bootstrap/dist/css/bootstrap.min.css";
 //import Carous from "./caroussel";
 //import Signup from "./signup";
+import Add from "./addNew";
 import Pic1 from "./film1.jpg";
 import Pic2 from "./film2.jpg";
 import Pic3 from "./film3.jpg";
+import { Button, ButtonToolbar } from "react-bootstrap";
 import "./home.css";
 
 const tabMovies = [
-  { title: "Gladiator", tof: Pic1, rate: "***" },
-  { title: "Pearl Harbor", tof: Pic2, rate: "****" },
-  { title: "Pirates of the caribbean", tof: Pic3, rate: "*****" },
+  {
+    id: 1,
+    title: "Gladiator",
+    tof: Pic1,
+    rate: "***",
+    description: "waraaaaaay",
+  },
+  {
+    id: 2,
+    title: "Pearl Harbor",
+    tof: Pic2,
+    rate: "****",
+    description: "kikikiki",
+  },
+  {
+    id: 3,
+    title: "Pirates of the caribbean",
+    tof: Pic3,
+    rate: "*****",
+    description: "hahahaha",
+  },
 ];
 
 /*fonction de filtration*/
@@ -23,14 +43,27 @@ class Home extends Component {
   state = {
     word: "",
     tabMovies: tabMovies,
+    addButton: false,
   };
-
+  /********search for a movie*************/
   barSearch = (e) => {
     this.setState({ word: e.target.value });
+  };
+  /*********add film*******/
+  addMovie = (e) => {
+    this.setState({
+      tabMovies: this.state.tabMovies.push({
+        tof: this.state.tof,
+        title: this.state.title,
+        rate: this.state.rate,
+        description: this.state.description,
+      }),
+    });
   };
 
   render() {
     const { word, tabMovies } = this.state;
+    let addButtonClose = () => this.setState({ addButton: false });
     return (
       <div className="home">
         <input
@@ -50,6 +83,12 @@ class Home extends Component {
             </div>
           ))}
         </div>
+        <ButtonToolbar>
+          <Button onClick={() => this.setState({ addButton: true })}>
+            Add New Movie
+          </Button>
+          <Add show={this.state.addButton} onHide={addButtonClose} />
+        </ButtonToolbar>
       </div>
     );
   }
