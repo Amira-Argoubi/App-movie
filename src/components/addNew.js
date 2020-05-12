@@ -29,8 +29,13 @@ class Add extends Component {
                     <Form.Group controlId="formGroupTof">
                       <Form.Control
                         type="text"
+                        src={this.props.state.image}
+                        alt="movie poster "
                         name="movieTof"
                         placeholder="URL..."
+                        onChange={(e) => {
+                          this.props.addfilmTof(e.target.value);
+                        }}
                       />
                     </Form.Group>
                     <Form.Group controlId="formGroupTitle">
@@ -38,6 +43,9 @@ class Add extends Component {
                         type="text"
                         name="movieTitle"
                         placeholder="Title..."
+                        onChange={(e) => {
+                          this.props.addfilmTitle(e.target.value);
+                        }}
                       />
                     </Form.Group>
                     <Form.Group controlId="formGroupRate">
@@ -45,6 +53,9 @@ class Add extends Component {
                         type="text"
                         name="movieRate"
                         placeholder="Rate..."
+                        onChange={(e) => {
+                          this.props.addfilmRate(e.target.value);
+                        }}
                       />
                     </Form.Group>
                   </Form>
@@ -53,7 +64,7 @@ class Add extends Component {
             </div>
           </Modal.Body>
           <Modal.Footer>
-            <Button className="addBut" onClick={this.props.onHide}>
+            <Button className="addBut" onClick={this.props.addObjectMovie}>
               Close
             </Button>
           </Modal.Footer>

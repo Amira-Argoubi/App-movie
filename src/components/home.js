@@ -50,15 +50,31 @@ class Home extends Component {
     this.setState({ word: e.target.value });
   };
   /*********add film*******/
-  addMovie = (e) => {
+  handleChangeTitle = (value) => {
     this.setState({
-      tabMovies: this.state.tabMovies.push({
-        tof: this.state.tof,
-        title: this.state.title,
-        rate: this.state.rate,
-        description: this.state.description,
-      }),
+      title: value,
     });
+  };
+
+  handleChangeRate = (value) => {
+    this.setState({
+      rate: value,
+    });
+  };
+  handleChangeTof = (value) => {
+    this.setState({
+      tof: value,
+    });
+  };
+  addMovie = (e) => {
+    tabMovies.push({
+      title: this.state.title,
+      description: this.state.description,
+      rate: this.state.rate,
+      tof: this.state.tof,
+    });
+    console.log(tabMovies);
+    this.setState({ description: "", title: "", rate: "" });
   };
 
   render() {
@@ -73,22 +89,33 @@ class Home extends Component {
           value={word}
           onChange={this.barSearch}
         />
+        <ButtonToolbar>
+          <Button
+            className="butAd"
+            onClick={() => this.setState({ addButton: true })}
+          >
+            Add New Movie
+          </Button>
+          <Add
+            show={this.state.addButton}
+            onHide={addButtonClose}
+            addfilmTitle={this.handleChangeTitle}
+            addfilmRate={this.handleChangeRate}
+            addfilmTof={this.handleChangeTof}
+            addObjectMovie={this.addMovie}
+            state={this.state}
+          />
+        </ButtonToolbar>
 
         <div className="cards">
           {tabMovies.filter(testFilter(word)).map((el) => (
             <div className="card">
-              <img src={el.tof} alt="totlapic"></img>
+              <img src={el.tof} alt="ahhhh" />
               <h3>{el.title}</h3>
               <h2>{el.rate}</h2>
             </div>
           ))}
         </div>
-        <ButtonToolbar>
-          <Button onClick={() => this.setState({ addButton: true })}>
-            Add New Movie
-          </Button>
-          <Add show={this.state.addButton} onHide={addButtonClose} />
-        </ButtonToolbar>
       </div>
     );
   }

@@ -2,10 +2,31 @@
   width: 400px;
   margin-left: 400px;
   margin-top: 50px;
-  border-radius: 8px;
+  border-radius: 20px;
   background-color: transparent;
   height: 50px;
+  text-align: center;
   color: white;
+}
+.butAd {
+  margin-left: 550px;
+  margin-top: 30px;
+  border-radius: 20px;
+  background: #03001e; /* fallback for old browsers */
+  background: -webkit-linear-gradient(
+    to right,
+    #fdeff9,
+    #ec38bc,
+    #7303c0,
+    #03001e
+  ); /* Chrome 10-25, Safari 5.1-6 */
+  background: linear-gradient(
+    to right,
+    #fdeff9,
+    #ec38bc,
+    #7303c0,
+    #03001e
+  ); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
 }
 .home {
   background-color: black;
@@ -13,6 +34,7 @@
 .cards {
   display: flex;
   justify-content: space-around;
+  flex-wrap: wrap;
 }
 .card {
   margin-top: 100px;
